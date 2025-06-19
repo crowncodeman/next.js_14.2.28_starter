@@ -3,13 +3,16 @@
 @tailwind utilities;
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #002868; /* U.S. flag blue */
+  --foreground: #fff;
+  --us-blue: #002868;
+  --us-red: #bf0a30;
+  --us-white: #fff;
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #0a0a0a;
+    --background: #00194a;
     --foreground: #ededed;
   }
 }
@@ -23,5 +26,49 @@ body {
 @layer utilities {
   .text-balance {
     text-wrap: balance;
+  }
+  .us-blue {
+    color: var(--us-blue);
+  }
+  .us-red {
+    color: var(--us-red);
+  }
+  .us-white {
+    color: var(--us-white);
+  }
+  .animated-gradient-bg {
+    position: fixed;
+    inset: 0;
+    z-index: -50;
+    width: 100vw;
+    height: 100vh;
+    background: linear-gradient(
+      90deg,
+      #002868 0%,
+      #002868 20%,
+      #fff 40%,
+      #bf0a30 60%,
+      #fff 80%,
+      #bf0a30 100%
+    );
+    background-size: 300% 100%;
+    animation: flagLeftRight 7s linear infinite;
+  }
+  .header-buy-btn {
+    @apply px-5 py-2 bg-gradient-to-r from-blue-900 via-red-700 to-blue-900 text-white font-bold rounded-full shadow border-2 border-white transition-all duration-200;
+  }
+  .header-buy-btn:hover {
+    @apply scale-110 shadow-xl;
+    box-shadow: 0 0 0 4px #bf0a30aa, 0 8px 32px 0 #00286855;
+    border-color: #bf0a30;
+  }
+}
+
+@keyframes flagLeftRight {
+  0% {
+    background-position: 0% 50%;
+  }
+  100% {
+    background-position: 100% 50%;
   }
 }
